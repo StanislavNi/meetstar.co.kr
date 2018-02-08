@@ -49,7 +49,7 @@
                             <span class="icon-bar"></span>
                             </button>
                             <div class="logo">
-                                <img src="images/doughnut.png">
+                                <img src="static/mainpage/images/doughnut.png">
                                 <a class="navbar-brand" href="index.html" >MEETSTAR</a>
                             </div>
 
@@ -70,6 +70,12 @@
                 </nav>
             </div>
 		</div>
+
+        {% include 'mainpage/carousel_partners.html' %}
+        {% include 'mainpage/how_to.html' %}
+        {% include 'mainpage/events.html' %}
+        {% include 'mainpage/media.html' %}
+
         <script type="text/javascript" >
             (function (d, w, c) {
                 (w[c] = w[c] || []).push(function() {

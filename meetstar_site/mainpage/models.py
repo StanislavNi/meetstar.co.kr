@@ -12,7 +12,6 @@ class Events(models.Model):
         print(self.userinevent_set.all().values('user'))
 
 
-
 class UsersInEvent(models.Model):
     user = models.ForeignKey(User)
     event = models.ForeignKey(Events)

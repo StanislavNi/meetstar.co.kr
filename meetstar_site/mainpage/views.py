@@ -16,3 +16,12 @@ def events(request):
 
 def media(request):
      return render(request, 'mainpage/media.html')
+
+def contact(request):
+    return render(request, 'mainpage/contact.html')
+
+def footer(request):
+    return render(request, 'mainpage/footer.html')
+
+def login(request):
+    return render(request, 'mainpage/login.html')

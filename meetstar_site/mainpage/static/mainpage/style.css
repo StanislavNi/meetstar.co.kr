@@ -69,7 +69,7 @@ ul.social li{
     display: inline;
 }
 ul.social li a{
-    background: url(../images/social.png);
+    background: url(static/mainpage/images/social.png);
     width: 32px;
     height: 32px;
     display: inline-block;

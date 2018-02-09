@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+
+{% block footer %}
+<div class="footer" id="contact">
+    <div class="contact-footer">
+        <div class="container">
+            <div class="fot-bottom">
+              <ul class="social nav-floats2" >
+                  <li>Follow us</li>
+              <br>
+              <br>
+                  <li><a href="#" class="face"></a></li>
+                  <li><a href="#" class="twit"></a></li>
+                  <li><a href="#" class="gpls"></a></li>
+                  <li><a href="#" class="inst"></a></li>
+              </ul>
+              <br>
+                <p>&copy; 2017 Stanislav Ni. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+{% endblock %}

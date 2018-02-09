@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+
+{% block contact %}
+
+<div class="footer" id="contact">
+    <div class="contact-footer">
+        <div class="container">
+            <div class="contact-form">
+                 <form action="https://formspree.io/stanislavni1991@gmail.com" method="POST">
+                    <input type="text" class="name" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}"/>
+                    <input type="text" class="email" name="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"/><br><br>
+                    <textarea onfocus="this.value = '';" name="textarea" onblur="if (this.value == '') {this.value = 'Message';}"/>Message</textarea><br><br>
+                    <input type="submit" class="sub2" value="Send"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

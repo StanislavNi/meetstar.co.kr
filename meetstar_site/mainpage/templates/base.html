@@ -36,7 +36,7 @@
         <!--start-smoth-scrolling-->
     </head>
     <body>
-        <div class="header-top" id="home">
+        <div class="header-top" id="{% block page_id %}inner{% endblock %}">
             <div class="navbar-wrapper">
                 <nav class="navbar navbar-default">
                     <div class="container">
@@ -70,6 +70,11 @@
                 </nav>
             </div>
 		</div>
+
+
+        {% block content %}
+        {% endblock %}
+
 
         <script type="text/javascript" >
             (function (d, w, c) {

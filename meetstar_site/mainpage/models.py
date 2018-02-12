@@ -20,6 +20,7 @@ class Events(models.Model):
 
         self.save()
 
+    # TODO: сделать из этого метода - classmethod
     def upcoming(self):
         up_events = Events.objects.filter(date__gt=datetime.datetime.now)
         return up_events

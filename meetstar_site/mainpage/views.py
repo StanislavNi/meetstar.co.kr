@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Events
+import datetime
 
 import logging
 
@@ -9,11 +10,9 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    # upcoming_events = ...
-
-    # cntx = {'upcoming_events': upcoming_events}
-
-    return render(request, 'mainpage/index.html', )
+    upcoming_events = Events.objects.filter(date__gt=datetime.datetime.now())
+    ctx = {'upcoming_events': upcoming_events}
+    return render(request, 'mainpage/index.html', context=ctx)
 
 def randomize(request):
     event_id = request.GET['event_id']
@@ -25,5 +24,5 @@ def randomize(request):
     return HttpResponse(event)
 
 def upcoming(request):
-    up_events = request.GET['event']
+    up_events = request.GET['upcoming_events']
     return HttpResponse(up_events)

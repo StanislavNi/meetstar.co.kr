@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 import random
-import datetime
-
 
 class Events(models.Model):
     date = models.DateField()
@@ -20,8 +18,8 @@ class Events(models.Model):
 
         self.save()
 
-    def upcoming(self):
-        return Events.objects.filter(date__gt=datetime.datetime.now)
+    """def upcoming(self):
+        return Events.objects.filter(date__gt=datetime.datetime.now)"""
 
     def __str__(self):
         return 'Event: {0}'.format(self.title)

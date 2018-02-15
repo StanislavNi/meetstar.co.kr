@@ -5,56 +5,20 @@
 <div class="features-block" id="upcomingevents">
     <div class="container">
         <h3>Upcoming events</h3>
-      {% for event in upcoming_events %}
+            {% for event in upcoming_events %}
 
-    <div class="row featurette">
-    <div class="col-md-7 txt-sty1 flot-stn3">
-      <h2 class="featurette-heading">{{ event }}<span class="text-muted"> It'll blow your mind.</span></h2>
-      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-    </div>
-    <div class="col-md-5 flot-stn3">
-      <img class="featurette-image img-responsive center-block" src="static/mainpage/images/kpop1.jpg" alt="Generic placeholder image">
-    </div>
-      <div class="clearfix"></div>
-  </div>
+                <div class="row featurette">
+                <div class="col-md-7 txt-sty1 flot-stn3">
+                  <h2 class="featurette-heading">{{ event.title }}<span class="text-muted"></span></h2>
+                  <p class="lead">{{ event.detail }}</p>
+                </div>
+                <div class="col-md-5 flot-stn3">
+                  <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}" alt="Generic placeholder image">
+                </div>
+                  <div class="clearfix"></div>
+                </div>
 
-     <!--- <div class="row featurette">
-        <div class="col-md-7 txt-sty1 flot-stn3">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 flot-stn3">
-          <img class="featurette-image img-responsive center-block" src="static/mainpage/images/kpop1.jpg" alt="Generic placeholder image">
-        </div>
-          <div class="clearfix"></div>
-      </div>
-
-<hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5 txt-sty2 flot-stn4">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7 flot-stn4">
-          <img class="featurette-image img-responsive center-block" src="static/mainpage/images/kpop2.jpg"  alt="Generic placeholder image">
-        </div>
-          <div class="clearfix"></div>
-      </div>
-
-<hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 txt-sty3 flot-stn5">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 flot-stn5">
-          <img class="featurette-image img-responsive center-block" src="static/mainpage/images/kpop3.png"  alt="Generic placeholder image">
-        </div>
-          <div class="clearfix"></div>
-      </div>-->
-        {% endfor %}
+            {% endfor %}
     </div>
 </div>
 

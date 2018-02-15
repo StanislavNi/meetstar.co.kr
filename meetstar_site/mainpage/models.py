@@ -21,6 +21,7 @@ class Events(models.Model):
     """def upcoming(self):
         return Events.objects.filter(date__gt=datetime.datetime.now)"""
 
+
     def __str__(self):
         return 'Event: {0}'.format(self.title)
 

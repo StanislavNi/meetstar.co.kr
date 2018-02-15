@@ -13,7 +13,6 @@ def index(request):
     ctx = {'upcoming_events': upcoming_events}
     return render(request, 'mainpage/index.html', context=ctx)
 
-
 def randomize(request):
     event_id = request.GET['event_id']
     try:

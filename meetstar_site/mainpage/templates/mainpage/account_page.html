@@ -14,14 +14,14 @@
             <div class="col-md-5 flot-stn3">
                   <img class="featurette-image img-responsive center-block" src="">
             </div>
-            <div class="container">
-                {% if user.is_authentificated %}
-                <h4>You participate in: </h4>
-                <ul>
-                    <li></li>
-                </ul>
-                {% endif %}
-            </div>
+        </div>
+        <div class="participate">
+            {% if user.is_authentificated %}
+            <h4>You participate in:</h4>
+            <ul>
+                <li>{{ user.event }}</li>
+            </ul>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="features-block" id="account">
+        <div class="container">
+            <h3>Hello,
+                {% if user.is_authentificated %}
+            {{ user.first_name }}
+                {% else %}
+                My friend
+            {% endif %}
+            </h3>
+            <div class="col-md-5 flot-stn3">
+                  <img class="featurette-image img-responsive center-block" src="">
+            </div>
+            <div class="container">
+                {% if user.is_authentificated %}
+                <h4>You participate in: </h4>
+                <ul>
+                    <li></li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

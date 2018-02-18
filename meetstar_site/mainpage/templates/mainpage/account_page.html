@@ -11,10 +11,12 @@
                 My friend
             {% endif %}
             </h3>
-            <div class="col-md-5 flot-stn3">
-                  <img class="featurette-image img-responsive center-block" src="">
-            </div>
         </div>
+
+        <div class="profile-photo">
+            <img src="">
+        </div>
+
         <div class="participate">
             {% if user.is_authentificated %}
             <h4>You participate in:</h4>
@@ -25,5 +27,3 @@
         </div>
     </div>
 {% endblock %}
-
-

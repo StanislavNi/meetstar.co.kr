@@ -31,15 +31,15 @@ def account_page(request):
 def login(request):
     context = {}
     if request.method == 'POST':
-        username = request.POST.get('username','')
+        username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('mainpage/account_page.html')
         else:
             login_error = 'User not exist'
             context = {'login_error': login_error}
-            return render(request, 'login_auth/login.html', context)
+            return render(request, 'mainpage/login.html', context)
     else:
-        return render(request, 'login_auth/login.html', context)
+        return render(request, 'mainpage/login.html', context)

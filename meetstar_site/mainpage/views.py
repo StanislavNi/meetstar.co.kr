@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse
 from .models import Events
-from django.contrib.auth.models import User
+from django.contrib import auth
 import datetime
 
 import logging
@@ -24,11 +24,23 @@ def randomize(request):
 
     return HttpResponse(event)
 
-
-def upcoming(request):
-    up_events = request.GET.get['event']
-    return HttpResponse(up_events)
-
 def account_page(request):
     ctx = {'user': request.user}
     return render(request, 'mainpage/account_page.html', context=ctx)
+
+def login(request):
+    context = {'user': request.user}
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect('/account_page')
+        else:
+            login_error = 'User not exist'
+            context = {'login_error': login_error}
+            return render(request, 'mainpage/login.html', context)
+    else:
+        return render(request, 'mainpage/login.html', context)
+

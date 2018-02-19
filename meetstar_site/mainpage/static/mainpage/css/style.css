@@ -346,6 +346,13 @@ i.top {
     text-align: center;
 }
 
+.participate{
+    width:  500px;
+    height: 300px;
+    border: 1px solid;
+    margin-left: 10px;
+}
+
 h3{
 	text-align: left;
 }
@@ -984,3 +991,4 @@ a.re {
 a.re:hover{
 	background:#FF0095;
 }
+

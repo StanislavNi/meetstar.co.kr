@@ -29,7 +29,7 @@ def account_page(request):
     return render(request, 'mainpage/account_page.html', context=ctx)
 
 def login(request):
-    context = {}
+    context = {'user': request.user}
     if request.method == 'POST':
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
@@ -43,3 +43,4 @@ def login(request):
             return render(request, 'mainpage/login.html', context)
     else:
         return render(request, 'mainpage/login.html', context)
+

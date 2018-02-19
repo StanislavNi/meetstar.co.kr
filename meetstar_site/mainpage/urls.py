@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
+import django.contrib.auth.views as auth_views
 
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -10,6 +11,8 @@ urlpatterns = [
     url(r'^randomize$', views.randomize, name=''),
     url(r'^account_page$', views.account_page, name=''),
     url(r'^login/$', views.login, name ='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'},
+        name='logout'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

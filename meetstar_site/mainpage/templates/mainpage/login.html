@@ -3,6 +3,8 @@
 
 {% block content %}
 <div class="features-block" id="login">
+{{  user.username }}
+{% if not user.is_authenticated %}
   <form action="" method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -31,5 +33,10 @@
       </div>
     </div>
   </form>
+{% else %}
+  <div>
+    <a class="btn btn-default" href='/logout'>Logout</a>
+  </div>
+{% endif %}
 </div>
 {% endblock %}

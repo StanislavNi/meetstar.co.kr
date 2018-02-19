@@ -5,8 +5,8 @@
     <div class="features-block" id="account">
         <div class="container">
             <h3>Hello,
-                {% if user.is_authentificated %}
-            {{ user.first_name }}
+                {% if user.is_authenticated %}
+            {{ user.username }}
                 {% else %}
                 My friend
             {% endif %}
@@ -18,10 +18,12 @@
         </div>
 
         <div class="participate">
-            {% if user.is_authentificated %}
+            {% if user.is_authenticated %}
             <h4>You participate in:</h4>
             <ul>
-                <li>{{ user.event }}</li>
+                {% for user_in_event in user_events %}
+                <li><h4>{{ user_in_event.event.title }}</h4></li>
+                {% endfor %}
             </ul>
             {% endif %}
         </div>

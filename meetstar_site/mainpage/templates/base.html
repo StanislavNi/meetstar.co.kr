@@ -60,7 +60,12 @@
                             <li><a href="#meetmedia" class="scroll">Meet Media</a></li>
                             <li><a href="#upcomingstars" class="scroll">Upcomig Events</a></li>
                             <li><a href="#contact" class="scroll">Contact</a></li>
-                            <li><a href='/login'>Login</a></li>
+                            {% if not user.is_authenticated %}
+                                <li><a href='/login'>Login</a></li>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                            <li><a href='/profile'>Profile</a></li>
+                            {% endif %}
                             </ul>
                             <div class="clearfix"></div>
                         </div><!-- /.navbar-collapse -->

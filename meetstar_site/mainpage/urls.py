@@ -9,7 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^randomize$', views.randomize, name=''),
-    url(r'^account_page$', views.account_page, name=''),
+    url(r'^profile$', views.profile, name=''),
     url(r'^login/$', views.login, name ='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'},
         name='logout'),

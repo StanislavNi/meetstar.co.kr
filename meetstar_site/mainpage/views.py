@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
-from .models import Events
+from .models import Events, UsersInEvent
 from django.contrib import auth
 import datetime
 
@@ -24,9 +24,12 @@ def randomize(request):
 
     return HttpResponse(event)
 
-def account_page(request):
-    ctx = {'user': request.user}
-    return render(request, 'mainpage/account_page.html', context=ctx)
+def profile(request):
+    user_events = []
+    if request.user.is_authenticated:
+        user_events = UsersInEvent.objects.filter(user=request.user)
+    ctx = {'user': request.user, 'user_events': user_events}
+    return render(request, 'mainpage/account_page.html', context=ctx,)
 
 def login(request):
     context = {'user': request.user}
@@ -36,7 +39,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect('/account_page')
+            return HttpResponseRedirect('/profile')
         else:
             login_error = 'User not exist'
             context = {'login_error': login_error}

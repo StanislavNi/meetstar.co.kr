@@ -21,7 +21,6 @@ def index(request):
 
     ctx = {
         'upcoming_events': upcoming_events,
-        'is_auth': request.user.is_authenticated,
         'user': request.user,
         'user_events': user_events,
         'videos': videos,
@@ -73,7 +72,10 @@ def events(request):
     past_events = Events.objects.filter(date__lt=datetime.datetime.now())
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
-    ctx = {'upcoming_events': upcoming_events,
-           'is_auth': request.user.is_authenticated,
-           'user': request.user, 'user_events': user_events, 'past_events': past_events}
+    ctx = {
+        'upcoming_events': upcoming_events,
+        'user': request.user,
+        'user_events': user_events,
+        'past_events': past_events,
+    }
     return render(request, 'mainpage/events_page.html', ctx)

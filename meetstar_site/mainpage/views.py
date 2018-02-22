@@ -10,6 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
+    user_events = []
     upcoming_events = Events.objects.filter(winner__isnull=True,
                                             date__gt=datetime.datetime.now())
     user_events = []

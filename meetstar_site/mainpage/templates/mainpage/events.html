@@ -22,12 +22,15 @@
                     {% endif %}
                     {% if not user.is_authenticated %}
                         <a class="btn btn-info" href='/login'>PARTICIPATE</a>
+
                     {% endif %}
                 </div>
                     <div class="col-md-5 flot-stn3">
                         <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}" alt="Generic placeholder image">
                     </div>
                         <div class="clearfix"></div>
+                </div>
+                  <div class="clearfix"></div>
                 </div>
                 <br>
             {% endfor %}

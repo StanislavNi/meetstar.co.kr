@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from .models import Events, UsersInEvent
+from content.models import Videos
 from django.contrib import auth
 import datetime
 
@@ -9,13 +10,22 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    user_events = []
     upcoming_events = Events.objects.filter(winner__isnull=True,
                                             date__gt=datetime.datetime.now())
+    user_events = []
+
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
-    ctx = {'upcoming_events': upcoming_events, 'is_auth': request.user.is_authenticated,
-           'user': request.user, 'user_events': user_events}
+
+    videos = Videos.objects.filter(address__isnull=False)
+
+    ctx = {
+        'upcoming_events': upcoming_events,
+        'is_auth': request.user.is_authenticated,
+        'user': request.user,
+        'user_events': user_events,
+        'videos': videos,
+    }
     return render(request, 'mainpage/index.html', context=ctx)
 
 def randomize(request):

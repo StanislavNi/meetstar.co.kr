@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^login/$', views.login, name ='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'},
         name='logout'),
+    url(r'^participate$', views.participate, name=''),
+    url(r'^events$', views.events, name=''),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

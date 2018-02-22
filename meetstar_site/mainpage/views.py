@@ -9,9 +9,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
+    user_events = []
     upcoming_events = Events.objects.filter(winner__isnull=True,
                                             date__gt=datetime.datetime.now())
-    ctx = {'upcoming_events': upcoming_events, 'is_auth': request.user.is_authenticated}
+    if request.user.is_authenticated:
+        user_events = UsersInEvent.objects.filter(user=request.user)
+    ctx = {'upcoming_events': upcoming_events, 'is_auth': request.user.is_authenticated,
+           'user': request.user, 'user_events': user_events}
     return render(request, 'mainpage/index.html', context=ctx)
 
 def randomize(request):
@@ -47,3 +51,19 @@ def login(request):
     else:
         return render(request, 'mainpage/login.html', context)
 
+def participate(request):
+    event_add = UsersInEvent.objects.get_or_create(user=request.user,
+                                            event_id=request.GET['event_id'])
+    return render(request, 'mainpage/account_page.html')
+
+def events(request):
+    user_events = []
+    upcoming_events = Events.objects.filter(winner__isnull=True,
+                                            date__gt=datetime.datetime.now())
+    past_events = Events.objects.filter(date__lt=datetime.datetime.now())
+    if request.user.is_authenticated:
+        user_events = UsersInEvent.objects.filter(user=request.user)
+    ctx = {'upcoming_events': upcoming_events,
+           'is_auth': request.user.is_authenticated,
+           'user': request.user, 'user_events': user_events, 'past_events': past_events}
+    return render(request, 'mainpage/events_page.html', ctx)

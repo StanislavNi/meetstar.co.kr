@@ -2,40 +2,19 @@
 
 
 {% block media %}
+
     <div class="videos" id="meetmedia">
     <div class="container">
         <h3>Meet Media</h3>
+        {% for videos in videos %}
         <div class="col-md-4 ifrm-stng">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TI0DGvqKZTI" frameborder="0" allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" src="{{ videos.address }}" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-md-4 ifrm-stng">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hsh54g9JmC0" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-4 ifrm-stng">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/8b2EP0NZtrU" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-4 ifrm-stng">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/V2hlQkVJZhE" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-4 ifrm-stng">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MBdVXkSdhwU" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-4 ifrm-stng">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JQGRg8XBnB4" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
+        {% endfor %}
         <div class="clearfix"></div>
     </div>
 </div>
+
 {% endblock %}

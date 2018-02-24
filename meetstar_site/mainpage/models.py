@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 import random
+from django.conf import settings
 
 class Events(models.Model):
     date = models.DateField()
     title = models.CharField(max_length=200)
     winner = models.ForeignKey(User, null=True, blank=True)
     detail = models.TextField(null=True)
-    photo = models.ImageField(null=True, blank=True)
+    photo = models.ImageField(null=True)
 
     def randomize(self):
         print('----- starting randomize')

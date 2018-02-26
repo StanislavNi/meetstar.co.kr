@@ -42,7 +42,12 @@ INSTALLED_APPS = [
     'userprofile'
 ]
 
-AUTH_PROFILE_MODULE = 'userprofile.Profile'
+AUTH_PROFILE_MODULE = AUTHENTICATION_BACKENDS = (
+     'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'userprofile.Profile'
+
 
 
 MIDDLEWARE = [

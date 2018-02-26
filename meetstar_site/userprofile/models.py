@@ -1,20 +1,17 @@
+from django.contrib.auth.models import AbstractUser, UserManager
+from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=120, blank=True)
+
+class Profile(AbstractUser):
+    bio = models.TextField(verbose_name=_('bio'), blank=True)
+    avatar = models.ImageField(upload_to='avatars', verbose_name=_('avatar'), blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    avatar = models.ImageField(null=True, blank=True)
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
+    objects = UserManager()
 
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+    class Meta:
+        db_table = 'profiles'
+        verbose_name = _('user profile')
+        verbose_name_plural = _('user profiles')

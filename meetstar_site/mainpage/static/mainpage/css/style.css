@@ -140,6 +140,7 @@ img.wid-p{
 .btn-info{
 	margin-right: auto;
 }
+
 .our-partners h3{
 	font-family: 'Roboto Slab', serif;
 	font-weight:700;
@@ -241,6 +242,7 @@ div#Choco_overlay {
 div#owl-demo1 {
     margin: 20px 0;
 }
+
 
 
 
@@ -626,6 +628,10 @@ ul.social-share li a.ins{
 }
 ul.social-share li a.ins:hover{
     background-position: 24px 24px;
+}
+.h3{
+    text-transform: capitalize;
+    color: red;
 }
 #toTop {
     display: none;

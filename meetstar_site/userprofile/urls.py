@@ -7,13 +7,7 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^randomize$', views.randomize, name=''),
-    url(r'^login/$', views.login, name ='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'},
-        name='logout'),
-    url(r'^participate$', views.participate, name=''),
-    url(r'^events$', views.events, name=''),
+    url(r'^profile$', views.profile, name=''),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

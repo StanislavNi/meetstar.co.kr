@@ -38,13 +38,6 @@ def randomize(request):
 
     return HttpResponse(event)
 
-def profile(request):
-    user_events = []
-    if request.user.is_authenticated:
-        user_events = UsersInEvent.objects.filter(user=request.user)
-    ctx = {'user': request.user, 'user_events': user_events}
-    return render(request, 'mainpage/account_page.html', context=ctx,)
-
 def login(request):
     context = {'user': request.user}
     if request.method == 'POST':

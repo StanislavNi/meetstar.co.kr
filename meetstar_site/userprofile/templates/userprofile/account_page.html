@@ -1,0 +1,37 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="features-block" id="account">
+        <div class="container">
+            <h3>Hello,
+                {% if user.is_authenticated %}
+            {{ user.username }}
+                {% else %}
+                My friend
+            {% endif %}
+            </h3>
+        </div>
+
+        <div class="profile-photo">
+            <img src="">
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <a class="btn btn-primary" style="margin-right:500px; margin-top:30em;" href="/logout">LOGOUT</a>
+            </div>
+            <div class="col-md-5" id="eventlist">
+                {% if user.is_authenticated %}
+                <h3>Your Events:</h3>
+                <ul style="list-style-type:none">
+                    {% for user_in_event in user_events %}
+                    <li>
+                        <h3><small>{{ user_in_event.event.title }}<h4>{{ user_in_event.event.date }}</h4></small></h3>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

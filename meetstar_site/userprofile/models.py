@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import AbstractUser, UserManager,User
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
@@ -10,6 +10,9 @@ class Profile(AbstractUser):
     birth_date = models.DateField(null=True, blank=True)
 
     objects = UserManager()
+
+    def __str__(self):
+        return self.username
 
     class Meta:
         db_table = 'profiles'

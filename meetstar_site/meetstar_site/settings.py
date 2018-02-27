@@ -48,8 +48,6 @@ AUTH_PROFILE_MODULE = AUTHENTICATION_BACKENDS = (
 
 AUTH_USER_MODEL = 'userprofile.Profile'
 
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

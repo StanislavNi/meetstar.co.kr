@@ -11,27 +11,82 @@
                 My friend
             {% endif %}
             </h3>
-        </div>
-
-        <div class="profile-photo">
-            <img src="">
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <a class="btn btn-primary" style="margin-right:500px; margin-top:30em;" href="/logout">LOGOUT</a>
-            </div>
-            <div class="col-md-5" id="eventlist">
-                {% if user.is_authenticated %}
-                <h3>Your Events:</h3>
-                <ul style="list-style-type:none">
-                    {% for user_in_event in user_events %}
-                    <li>
-                        <h3><small>{{ user_in_event.event.title }}<h4>{{ user_in_event.event.date }}</h4></small></h3>
-                    </li>
-                    {% endfor %}
-                </ul>
+            <div class="col-md-4">
+                {% if form.errors %}
+                    <ul class="errorlist">
+                        <li>You entered invalid info</li>
+                    </ul>
                 {% endif %}
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="avatar"></label>
+                        <img id="avatar" type="image" name="avatar" src="/images/{{ user.avatar }}">
+                    <input type="submit" value="OK">
+                </form>
+                 <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" value="{{ user.username }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="first_name">First name</label>
+                    <input id="first_name" type="text" name="first_name" value="{{ user.first_name }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="last_name">Last name</label>
+                    <input id="last_name" type="text" name="first_name" value="{{ user.last_name }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="bio">Bio</label>
+                    <input id="bio" type="text" name="first_name" value="{{ user.bio }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="location">Location</label>
+                    <input id="location" type="text" name="first_name" value="{{ user.location }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="birth_date">Birth date</label>
+                    <input id="birth_date" type="text" name="first_name" value="{{ user.birth_date }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="email">Email</label>
+                    <input id="email" type="text" name="first_name" value="{{ user.email }}">
+                    <input type="submit" value="OK">
+                </form>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="password">Password</label>
+                    <input id="password" type="text" name="first_name" value="{{ user.password }}">
+                    <input type="submit" value="OK">
+                </form>
+
+                    <a class="btn btn-primary" style="margin-top:7em;" href="/logout">LOGOUT</a>
             </div>
+            <div class="col-md-4"></div>
+                <div class="col-md-4" id="eventlist">
+                    {% if user.is_authenticated %}
+                    <h3>Your Events:</h3>
+                    <ul style="list-style-type:none">
+                        {% for user_in_event in user_events %}
+                        <li>
+                            <h3><small>{{ user_in_event.event.title }}<h4>{{ user_in_event.event.date }}</h4></small></h3>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
         </div>
     </div>
 {% endblock %}

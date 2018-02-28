@@ -10,7 +10,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    user_events = []
     upcoming_events = Events.objects.filter(winner__isnull=True,
                                             date__gt=datetime.datetime.now())
     user_events = []
@@ -57,7 +56,7 @@ def login(request):
 def participate(request):
     event_add = UsersInEvent.objects.get_or_create(user=request.user,
                                             event_id=request.GET['event_id'])
-    return render(request, 'mainpage/account_page.html')
+    return render(request, 'userprofile/account_page.html')
 
 def events(request):
     user_events = []
@@ -73,3 +72,11 @@ def events(request):
         'past_events': past_events,
     }
     return render(request, 'mainpage/events_page.html', ctx)
+
+def paywall(request):
+    upcoming_events = Events.objects.filter(winner__isnull=True,
+                                            date__gt=datetime.datetime.now())
+    user_events = UsersInEvent.objects.filter(user=request.user)
+    ctx = {'user_events': user_events, 'upcoming_events': upcoming_events,
+           'user': request.user}
+    return render(request, 'mainpage/paywall.html', ctx)

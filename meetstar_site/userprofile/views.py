@@ -8,7 +8,6 @@ def profile(request):
         user_events = UsersInEvent.objects.filter(user=request.user)
     if request.method == 'POST':
         form = forms.UserForm(data=request.POST,instance=request.user)
-        print(form.errors)
         if form.is_valid():
             form.save()
             return redirect('')

@@ -16,6 +16,9 @@ def index(request):
 
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
+        # change result from list of UserInEvent objects to list of event_id-s
+        # ex: [1, 23, 4456, 233]
+        # required methods: django orm .values() and param - flat
 
     videos = Videos.objects.filter(address__isnull=False)
 

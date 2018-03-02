@@ -1,8 +1,8 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from mainpage.models import UsersInEvent
 from . import forms
+from .forms import UserCreateForm
 
 def profile(request):
     user_events = []
@@ -22,15 +22,15 @@ def profile(request):
 
 def signup(request):
     if request.method == 'POST':
-        #create form and meta
-        form = UserCreationForm(request.POST)
+        form = UserCreateForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
+            raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            print(username,raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('')
     else:
-        form = UserCreationForm()
+        form = UserCreateForm()
     return render(request, 'userprofile/signup.html', {'form': form})

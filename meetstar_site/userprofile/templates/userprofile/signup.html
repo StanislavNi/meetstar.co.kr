@@ -7,9 +7,29 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <h2>Sign up</h2>
+                {% if form.errors %}
+                    <ul class="errorlist">
+                    </ul>
+                {% endif %}
+                <style>
+                    .signup-form th, .signup-form td{
+                        padding: 10px !important;
+                        text-align: top !important;
+                    }
+                    .profile-form .errorlist {
+                                margin-left: 20px;
+                                color: red;
+                    }
+                    input{
+                        border-radius: 3px !important;
+                        width: 200px !important;
+                    }
+                </style>
               <form method="post">
-                {% csrf_token %}
-                {{ form.as_table }}
+                  <table class="signup-form">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                  </table>
                 <button type="submit">Sign up</button>
               </form>
             </div>

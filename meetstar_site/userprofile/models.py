@@ -1,6 +1,7 @@
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from .managers import ProfileManager
 
 class Profile(AbstractUser):
     bio = models.TextField(verbose_name=_('bio'), blank=True)
@@ -8,7 +9,7 @@ class Profile(AbstractUser):
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
-    objects = UserManager()
+    objects = ProfileManager()
 
     def __str__(self):
         return self.username

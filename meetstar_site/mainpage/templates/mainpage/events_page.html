@@ -11,18 +11,19 @@
                   <h2 class="featurette-heading">{{ event.title }}<h4>{{ event.date }}</h4><span class="text-muted"></span></h2>
                   <p class="lead">{{ event.detail }}</p>
                     {% if user.is_authenticated %}
-                      <a class="btn btn-info" href='participate?event_id={{ event.id }}'>PARTICIPATE</a>
-                    j{{event_ids}}-
-                        {% for user_in_event in event_ids %}
-                    yy
-                            {% if user_in_event.event.id == event.id %}
-                                <p>You are already in this event!</p>
+
+                        {% if event.id in user_event_ids %}
+
+                            <p>You are already in this event!</p>
+
+                        {% else %}
+                            <a class="btn btn-info" href='/paywall?event_id={{ event.id }}'>PARTICIPATE</a>
+
                         {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if not user.is_authenticated %}
-                  <a class="btn btn-info" href='/login'>PARTICIPATE</a>
-                    {% endif %}
+
+                    {% else %}
+                        <a class="btn btn-info" href="/login">PARTICIPATE</a>
+                  {% endif %}
                 </div>
                 <div class="col-md-5 flot-stn3">
                   <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}" alt="Generic placeholder image">
@@ -31,7 +32,7 @@
                 </div>
                 <br>
             {% endfor %}
-        <button class="btn btn-primary btn-md" data-toggle="collapse" data-target="#demo">All events</button>
+        <button class="btn btn-primary btn-md" style="width: 200px;" data-toggle="collapse" data-target="#demo">Past events</button>
         <div id="demo" class="collapse">
             <br>
              {% for event in past_events %}

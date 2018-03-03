@@ -16,13 +16,12 @@ def index(request):
 
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
-        # change result from list of UserInEvent objects to list of event_id-s
-        # ex: [1, 23, 4456, 233]
-        # required methods: django orm .values() and param - flat
-
+        event_ids = user_events.values_list('event_id', flat=True)
+    else:
+        event_ids = None
     videos = Videos.objects.filter(address__isnull=False)
-
     ctx = {
+        'user_event_ids': event_ids,
         'upcoming_events': upcoming_events,
         'user': request.user,
         'user_events': user_events,
@@ -77,9 +76,5 @@ def events(request):
     return render(request, 'mainpage/events_page.html', ctx)
 
 def paywall(request):
-    upcoming_events = Events.objects.filter(winner__isnull=True,
-                                            date__gt=datetime.datetime.now())
-    user_events = UsersInEvent.objects.filter(user=request.user)
-    ctx = {'user_events': user_events, 'upcoming_events': upcoming_events,
-           'user': request.user}
-    return render(request, 'mainpage/paywall.html', ctx)
+    event = Events.objects.get(id=request.GET['event_id'])
+    return render(request, 'mainpage/paywall.html', {'event': event})

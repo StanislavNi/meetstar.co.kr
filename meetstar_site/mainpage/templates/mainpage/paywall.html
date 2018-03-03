@@ -7,11 +7,7 @@
         <div class="checking" style="padding: 15%;">
             <label for="check"><h4>Payment is successful</h4></label>
             <input type="checkbox" id="check">
-            {% for event in upcoming_events %}
-              {% if user.is_authenticated %}
                 <a class="btn btn-info" href='participate?event_id={{ event.id }}'>I've paid!</a>
-              {% endif %}
-            {% endfor %}
         </div>
     </div>
 </div>

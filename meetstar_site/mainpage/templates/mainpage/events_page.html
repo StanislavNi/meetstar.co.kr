@@ -12,7 +12,9 @@
                   <p class="lead">{{ event.detail }}</p>
                     {% if user.is_authenticated %}
                       <a class="btn btn-info" href='participate?event_id={{ event.id }}'>PARTICIPATE</a>
-                        {% for user_in_event in user_events %}
+                    j{{event_ids}}-
+                        {% for user_in_event in event_ids %}
+                    yy
                             {% if user_in_event.event.id == event.id %}
                                 <p>You are already in this event!</p>
                         {% endif %}

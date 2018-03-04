@@ -1,5 +1,6 @@
 {% extends '../base.html' %}
 {% load staticfiles %}
+{% load bootstrap %}
 
 {% block content %}
     <div class="features-block" id="account">
@@ -11,26 +12,12 @@
                     <ul class="errorlist">
                     </ul>
                 {% endif %}
-                <style>
-                    .signup-form th, .signup-form td{
-                        padding: 10px !important;
-                        text-align: top !important;
-                    }
-                    .profile-form .errorlist {
-                                margin-left: 20px;
-                                color: red;
-                    }
-                    input{
-                        border-radius: 3px !important;
-                        width: 200px !important;
-                    }
-                </style>
               <form method="post">
-                  <table class="signup-form">
+                  <div class="form-group">
                     {% csrf_token %}
-                    {{ form.as_table }}
-                  </table>
-                <button type="submit">Sign up</button>
+                    {{ form|bootstrap }}
+                  </div>
+                <input class="btn btn-success" type="submit">
               </form>
             </div>
             <div class="col-md-4"></div>

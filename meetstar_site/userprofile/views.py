@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from mainpage.models import UsersInEvent
 from . import forms
 from .forms import UserCreateForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 def profile(request):
     user_events = []
@@ -34,3 +37,19 @@ def signup(request):
     else:
         form = UserCreateForm()
     return render(request, 'userprofile/signup.html', {'form': form})
+
+def password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('/password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'userprofile/password_change.html', {
+        'form': form
+    })

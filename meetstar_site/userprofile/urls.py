@@ -8,6 +8,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^profile$', views.profile, name=''),
     url(r'^signup/$', views.signup, name='signup'),
+    url(r'^password/$', views.password, name='')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

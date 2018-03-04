@@ -8,7 +8,11 @@
             {% for event in upcoming_events %}
                 <div class="row featurette">
                 <div class="col-md-7 txt-sty1 flot-stn3">
-                  <h2 class="featurette-heading">{{ event.title }}<h4>{{ event.date }}</h4><span class="text-muted"></span></h2>
+                  <h2 class="featurette-heading">
+                      <a class="link" href="/details_event?event_id={{ event.id }}">{{ event.title }}</a>
+                      <h4>{{ event.date }}</h4>
+                      <span class="text-muted"></span>
+                  </h2>
                   <p class="lead">{{ event.detail }}</p>
                     {% if user.is_authenticated %}
 
@@ -38,7 +42,11 @@
              {% for event in past_events %}
                 <div class="row featurette">
                 <div class="col-md-7 txt-sty1 flot-stn3">
-                  <h2 class="featurette-heading">{{ event.title }}<h4>{{ event.date }}</h4><span class="text-muted"></span></h2>
+                  <h2 class="featurette-heading">
+                    <a class="link" href="/details_event?event_id={{ event.id }}" >{{ event.title }}</a>
+                      <h4>{{ event.date }}</h4>
+                      <span class="text-muted"></span>
+                  </h2>
                   <p class="lead">{{ event.detail }}</p>
                 </div>
                 <div class="col-md-5 flot-stn3">

@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from mainpage.models import UsersInEvent
+from mainpage.models import UsersInEvent, Events
 from . import forms
 from .forms import UserCreateForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -53,3 +53,7 @@ def password(request):
     return render(request, 'userprofile/password_change.html', {
         'form': form
     })
+
+def details_event(request):
+    event = Events.objects.get(id=request.GET['event_id'])
+    return render(request, 'userprofile/details_event.html', {'event': event})

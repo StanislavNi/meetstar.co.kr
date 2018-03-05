@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'mainpage',
     'content',
-    'userprofile'
+    'userprofile',
 ]
 
 AUTH_PROFILE_MODULE = AUTHENTICATION_BACKENDS = (
@@ -47,8 +48,6 @@ AUTH_PROFILE_MODULE = AUTHENTICATION_BACKENDS = (
 )
 
 AUTH_USER_MODEL = 'userprofile.Profile'
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -14,6 +14,8 @@ urlpatterns = [
         name='logout'),
     url(r'^participate$', views.participate, name=''),
     url(r'^events$', views.events, name=''),
+    url(r'^paywall$', views.paywall, name=''),
+    url(r'^details_event$', views.details_event, name=''),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

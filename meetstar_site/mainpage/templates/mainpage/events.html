@@ -5,35 +5,32 @@
 <div class="features-block" id="upcomingevents">
     <div class="container">
         <h3><a href="/events">Upcoming events</a></h3>
-            {% for event in upcoming_events %}
-
-                <div class="row featurette">
+        {% for event in upcoming_events %}
+            <div class="row featurette">
                 <div class="col-md-7 txt-sty1 flot-stn3">
-                  <h2 class="featurette-heading">{{ event.title }}<h4>{{ event.date }}</h4><span class="text-muted"></span></h2>
-                    <br>
+                  <h2 class="featurette-heading">
+                      <a class="link" href="/details_event?event_id={{ event.id }}" >{{ event.title }}</a>
+                      <h4>{{ event.date }}</h4>
+                      <span class="text-muted"></span>
+                  </h2><br>
                   <p class="lead">{{ event.detail }}</p>
                     {% if user.is_authenticated %}
-                      <a class="btn btn-info" href='participate?event_id={{ event.id }}'>PARTICIPATE</a>
-                        {% for user_in_event in user_events %}
-                            {% if user_in_event.event.id == event.id %}
-                                <p>You are already in this event!</p>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if not user.is_authenticated %}
-                        <a class="btn btn-info" href='/login'>PARTICIPATE</a>
-
-                    {% endif %}
+                        {% if event.id in user_event_ids %}
+                            <h4 style="color: #337ab7;">You are already in this event!</h4>
+                        {% else %}
+                            <a class="btn btn-info" href='/paywall?event_id={{ event.id }}'>PARTICIPATE</a>
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-info" href="/login">PARTICIPATE</a>
+                  {% endif %}
                 </div>
-                    <div class="col-md-5 flot-stn3">
-                        <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}" alt="Generic placeholder image">
-                    </div>
-                        <div class="clearfix"></div>
+                <div class="col-md-5 flot-stn3">
+                    <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}">
                 </div>
-                  <div class="clearfix"></div>
-                </div>
-                <br>
-            {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+            <br>
+        {% endfor %}
     </div>
 </div>
 

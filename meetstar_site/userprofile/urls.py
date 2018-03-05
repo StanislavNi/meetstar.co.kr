@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
-import django.contrib.auth.views as auth_views
 
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^profile$', views.profile, name=''),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^password/$', views.password, name=''),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

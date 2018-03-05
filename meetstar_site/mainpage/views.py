@@ -10,17 +10,18 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    user_events = []
     upcoming_events = Events.objects.filter(winner__isnull=True,
                                             date__gt=datetime.datetime.now())
     user_events = []
 
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
-
+        event_ids = user_events.values_list('event_id', flat=True)
+    else:
+        event_ids = None
     videos = Videos.objects.filter(address__isnull=False)
-
     ctx = {
+        'user_event_ids': event_ids,
         'upcoming_events': upcoming_events,
         'user': request.user,
         'user_events': user_events,
@@ -57,7 +58,7 @@ def login(request):
 def participate(request):
     event_add = UsersInEvent.objects.get_or_create(user=request.user,
                                             event_id=request.GET['event_id'])
-    return render(request, 'mainpage/account_page.html')
+    return render(request, 'userprofile/account_page.html')
 
 def events(request):
     user_events = []
@@ -73,3 +74,12 @@ def events(request):
         'past_events': past_events,
     }
     return render(request, 'mainpage/events_page.html', ctx)
+
+def paywall(request):
+    event = Events.objects.get(id=request.GET['event_id'])
+    return render(request, 'mainpage/paywall.html', {'event': event})
+
+
+def details_event(request):
+    event = Events.objects.get(id=request.GET['event_id'])
+    return render(request, 'mainpage/details_event.html', {'event': event})

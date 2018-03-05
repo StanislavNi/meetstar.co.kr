@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="features-block" id="paywall">
+    <div class="container" style="height: 50%;">
+        <div class="checking" style="padding: 15%;">
+            <label for="check"><h4>Payment is successful</h4></label>
+            <input type="checkbox" id="check">
+                <a class="btn btn-info" href='participate?event_id={{ event.id }}'>I've paid!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

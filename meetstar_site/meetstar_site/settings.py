@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'mainpage',
     'content',
     'userprofile',
-    'bootstrapform',
 ]
 
 AUTH_PROFILE_MODULE = AUTHENTICATION_BACKENDS = (

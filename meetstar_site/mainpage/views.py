@@ -78,3 +78,8 @@ def events(request):
 def paywall(request):
     event = Events.objects.get(id=request.GET['event_id'])
     return render(request, 'mainpage/paywall.html', {'event': event})
+
+
+def details_event(request):
+    event = Events.objects.get(id=request.GET['event_id'])
+    return render(request, 'mainpage/details_event.html', {'event': event})

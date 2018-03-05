@@ -8,10 +8,6 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <h2>Sign up</h2>
-                {% if form.errors %}
-                    <ul class="errorlist">
-                    </ul>
-                {% endif %}
               <form method="post">
                   <div class="form-group">
                     {% csrf_token %}

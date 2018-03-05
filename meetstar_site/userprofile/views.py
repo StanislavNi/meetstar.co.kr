@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from mainpage.models import UsersInEvent, Events
+from mainpage.models import UsersInEvent
 from . import forms
 from .forms import UserCreateForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -21,7 +21,7 @@ def profile(request):
         form = forms.UserForm(instance=request.user)
 
     ctx = {'user': request.user, 'user_events': user_events, 'form': form}
-    return render(request, 'userprofile/account_page.html', context=ctx,)
+    return render(request, 'userprofile/account_page.html', context=ctx)
 
 def signup(request):
     if request.method == 'POST':
@@ -31,9 +31,8 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            print(username,raw_password)
             login(request, user)
-            return redirect('')
+            return redirect('/profile')
     else:
         form = UserCreateForm()
     return render(request, 'userprofile/signup.html', {'form': form})
@@ -53,7 +52,3 @@ def password(request):
     return render(request, 'userprofile/password_change.html', {
         'form': form
     })
-
-def details_event(request):
-    event = Events.objects.get(id=request.GET['event_id'])
-    return render(request, 'userprofile/details_event.html', {'event': event})

@@ -13,13 +13,13 @@
             {% endif %}
             </h3>
             <div class="col-md-4">
-                {% if form.errors %}
-                    <ul class="errorlist">
-                    </ul>
+                {% if not user.avatar %}
+                    <img src="static/mainpage/images/default_avatar.png" style="width: 150px; height: 150px;">
+                {% else %}
+                    <img src="/images/{{ user.avatar }}" style="width: 150px; height: 150px;">
                 {% endif %}
-                 <form action="" method="post">
+                 <form action="profile" method="post" enctype="multipart/form-data">
                      {% csrf_token %}
-                     <img src="/images/{{ user.avatar }}" style="width: 150px; height: 150px;">
                      <div class="form-group">
                      {% csrf_token %}
                      {{ form|bootstrap }}

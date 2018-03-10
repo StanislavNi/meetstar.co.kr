@@ -1,5 +1,5 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponseRedirect,HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Events, UsersInEvent
 from content.models import Videos
 from django.contrib import auth

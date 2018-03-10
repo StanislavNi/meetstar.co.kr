@@ -1,11 +1,12 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from mainpage.models import UsersInEvent
-from . import forms
-from .forms import UserCreateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+
+from mainpage.models import UsersInEvent
+from . import forms
+from .forms import UserCreateForm
 
 
 def profile(request):

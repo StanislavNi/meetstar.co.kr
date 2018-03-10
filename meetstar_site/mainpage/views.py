@@ -1,11 +1,13 @@
+import datetime
+import logging
+
+from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Events, UsersInEvent
-from content.models import Videos
-from django.contrib import auth
-import datetime
 
-import logging
+from content.models import Videos
+from .models import Events, UsersInEvent
+
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +60,7 @@ def login(request):
 def participate(request):
     event_add = UsersInEvent.objects.get_or_create(user=request.user,
                                             event_id=request.GET['event_id'])
-    return redirect('/events')
+    return redirect('events')
 
 def events(request):
     user_events = []
@@ -80,7 +82,6 @@ def events(request):
 def paywall(request):
     event = Events.objects.get(id=request.GET['event_id'])
     return render(request, 'mainpage/paywall.html', {'event': event})
-
 
 def details_event(request):
     event = Events.objects.get(id=request.GET['event_id'])

@@ -13,7 +13,7 @@ def profile(request):
         user_events = UsersInEvent.objects.filter(user=request.user)
 
     if request.method == 'POST':
-        form = forms.UserForm(data=request.POST, instance=request.user)
+        form = forms.UserForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('')

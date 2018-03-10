@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'},
         name='logout'),
     url(r'^participate$', views.participate, name=''),
-    url(r'^events$', views.events, name=''),
+    url(r'^events$', views.events, name='events'),
     url(r'^paywall$', views.paywall, name=''),
     url(r'^details_event$', views.details_event, name=''),
 ]

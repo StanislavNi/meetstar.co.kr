@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect,HttpResponse
 from .models import Events, UsersInEvent
 from content.models import Videos
@@ -58,7 +58,7 @@ def login(request):
 def participate(request):
     event_add = UsersInEvent.objects.get_or_create(user=request.user,
                                             event_id=request.GET['event_id'])
-    return render(request, 'userprofile/account_page.html')
+    return redirect('/events')
 
 def events(request):
     user_events = []
@@ -67,7 +67,9 @@ def events(request):
     past_events = Events.objects.filter(date__lt=datetime.datetime.now())
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
+        event_ids = user_events.values_list('event_id', flat=True)
     ctx = {
+        'user_event_ids': event_ids,
         'upcoming_events': upcoming_events,
         'user': request.user,
         'user_events': user_events,

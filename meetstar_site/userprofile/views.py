@@ -7,6 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
+
 def profile(request):
     user_events = []
     if request.user.is_authenticated:

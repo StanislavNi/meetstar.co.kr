@@ -1,9 +1,11 @@
 from django import forms
 from .models import Profile
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.db import models
 
 class UserForm(forms.ModelForm):
     class Meta:
+        avatar = models.ImageField(upload_to='avatars')
         model = Profile
         fields = ['avatar', 'username' , 'first_name', 'last_name', 'email',
                   'bio', 'location', 'birth_date'

@@ -85,4 +85,6 @@ def paywall(request):
 
 def details_event(request):
     event = Events.objects.get(id=request.GET['event_id'])
-    return render(request, 'mainpage/details_event.html', {'event': event})
+    users_in_event = UsersInEvent.objects.filter(event_id=request.GET['event_id'])
+    return render(request, 'mainpage/details_event.html', {'event': event,
+                                                           'users_in_event': users_in_event})

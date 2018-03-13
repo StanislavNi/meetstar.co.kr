@@ -1,0 +1,5 @@
+Django==1.11.10
+django-bootstrap-form==3.3
+honcho==1.0.1
+Pillow==5.0.0
+pytz==2017.3

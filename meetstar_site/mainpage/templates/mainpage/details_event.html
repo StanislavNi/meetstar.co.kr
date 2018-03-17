@@ -3,18 +3,18 @@
 
 {% block content %}
 <style>
-ul.partlist{
-    width: 350px;
-    height: 150px;
-    overflow-y: auto;
-}
-li.userlist{
-    margin: 5px;
-}
-h1.eventtitle{
-    color: #337ab7;
-    font-family:'Roboto Slab',serif;
-}
+    ul.partlist{
+        width: 350px;
+        height: 150px;
+        overflow-y: auto;
+    }
+    li.userlist{
+        margin: 5px;
+    }
+    h1.eventtitle{
+        color: #337ab7;
+        font-family:'Roboto Slab',serif;
+    }
 </style>
 <div class="features-block">
     <div class="container">
@@ -31,12 +31,12 @@ h1.eventtitle{
         <div class="col-md-4">
             <h2>Participants</h2>
             <ul class="partlist">
-                {% for user in users_in_event %}
-                    <li class="userlist">{{ user.user }}
-                    {% if not user.user.avatar %}
-                        <img src="/static/mainpage/images/default_avatar.png" width="50" height="50">
+                {% for eventusers in users_in_event %}
+                    <li class="userlist">{{ eventusers.user }}
+                    {% if eventusers.user.avatar %}
+                        <img src="/images/{{ eventusers.user.avatar }}" width="50" height="50">
                     {% else %}
-                        <img src="/images/{{ user.user.avatar }}" width="50" height="50">
+                        <img src="/static/mainpage/images/default_avatar.png" width="50" height="50">
                     {% endif %}
                     </li>
                 {% endfor %}

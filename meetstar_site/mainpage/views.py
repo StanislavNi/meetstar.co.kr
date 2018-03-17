@@ -87,4 +87,4 @@ def details_event(request):
     event = Events.objects.get(id=request.GET['event_id'])
     users_in_event = UsersInEvent.objects.filter(event=event)
     return render(request, 'mainpage/details_event.html',
-                  {'event': event,'users_in_event': users_in_event})
+                  {'event': event, 'users_in_event': users_in_event})

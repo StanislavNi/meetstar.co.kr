@@ -36,10 +36,10 @@
         <div class="col-md-4">
             <h2>Participants</h2>
             <ul class="partlist">
-                {% for eventusers in users_in_event %}
-                    <li class="userlist">{{ eventusers.user }}
-                    {% if eventusers.user.avatar %}
-                        <img src="/images/{{ eventusers.user.avatar }}" width="50" height="50">
+                {% for eventuser in users_in_event %}
+                    <li class="userlist">{{ eventuser.user }}
+                    {% if eventuser.user.avatar %}
+                        <img src="/images/{{ eventuser.user.avatar }}" width="50" height="50">
                     {% else %}
                         <img src="/static/mainpage/images/default_avatar.png" width="50" height="50">
                     {% endif %}

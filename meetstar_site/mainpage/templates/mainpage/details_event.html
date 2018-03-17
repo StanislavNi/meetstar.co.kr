@@ -2,6 +2,20 @@
 {% load staticfiles %}
 
 {% block content %}
+<style>
+    ul.partlist{
+        width: 350px;
+        height: 150px;
+        overflow-y: auto;
+    }
+    li.userlist{
+        margin: 5px;
+    }
+    h1.eventtitle{
+        color: #337ab7;
+        font-family:'Roboto Slab',serif;
+    }
+</style>
 <div class="features-block">
     <div class="container">
         <div class="col-md-6">
@@ -18,6 +32,22 @@
         <div class="col-md-6">
             <img class="featurette-image img-responsive center-block" src="{{ event.photo.url }}">
         </div>
+
+        <div class="col-md-4">
+            <h2>Participants</h2>
+            <ul class="partlist">
+                {% for eventuser in users_in_event %}
+                    <li class="userlist">{{ eventuser.user }}
+                    {% if eventuser.user.avatar %}
+                        <img src="/images/{{ eventuser.user.avatar }}" width="50" height="50">
+                    {% else %}
+                        <img src="/static/mainpage/images/default_avatar.png" width="50" height="50">
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-8"></div>
     </div>
 </div>
 {% endblock %}

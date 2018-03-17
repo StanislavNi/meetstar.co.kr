@@ -15,11 +15,11 @@ body{
 }
 @font-face{
 	font-family:'BenchNine';
-	src:url(../fonts/BenchNine/BenchNine-Regular.ttf) format('truetype');
+	src:url(https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister);
 }
 @font-face{
     font-family:'Cagliostro';
-    src:url(../fonts/Cagliostro/Cagliostro-Regular.ttf) format('truetype');
+	src:url(https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister);
 }
 /*--nav--set--*/
 .navbar-default {
@@ -310,7 +310,6 @@ div#owl-demo1 {
     color: #fff;
 }
 .hover-box i{
-    background: url(../images/arrowtp-bt.png);
     height: 16px;
     width: 16px;
     display: block;

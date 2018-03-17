@@ -19,8 +19,13 @@
 <div class="features-block">
     <div class="container">
         <div class="col-md-6">
-            <h1 class="eventtitle">{{ event.title }}</h1>
-            <h4>{{ event.date }}</h4>
+            <h2 class="featurette-heading">
+            <div class="date">
+                <span class="month">{{ event.date|date:"M" }}</span>
+                <h1 class="day">{{ event.date|date:"d" }}</h1>
+            </div>
+            <h1 style="color: #337ab7;font-family:'Roboto Slab',serif;">{{ event.title }}</h1>
+            </h2>
             <br>
             <h4>{{ event.detail }}</h4>
         </div>

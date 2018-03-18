@@ -70,6 +70,8 @@ def events(request):
     if request.user.is_authenticated:
         user_events = UsersInEvent.objects.filter(user=request.user)
         event_ids = user_events.values_list('event_id', flat=True)
+    else:
+        event_ids = None
     ctx = {
         'user_event_ids': event_ids,
         'upcoming_events': upcoming_events,

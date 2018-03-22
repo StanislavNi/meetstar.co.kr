@@ -7,4 +7,4 @@ install:
 # command to run tests
 script:
   - cd meetstar_site
-  - python manage.py test # or py.test for Python versions 3.5 and below
+  - python manage.py test --settings=meetstar_site.settingstest # or py.test for Python versions 3.5 and below

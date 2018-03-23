@@ -4,6 +4,7 @@ import logging
 from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.mail import send_mail
 
 from content.models import Videos
 from .models import Events, UsersInEvent
@@ -35,9 +36,13 @@ def randomize(request):
     event_id = request.GET['event_id']
     try:
         event = Events.objects.get(id=event_id)
-        event.randomize()
+        winner = event.randomize()
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
+    all_users = UsersInEvent.objects.filter(id=event_id)
+
+    send_mail('It is time for event', 'The winner is', 'settings.EMAIL_HOST_USER',
+              [all_users.user], fail_silently=False)
 
     return HttpResponse(event)
 

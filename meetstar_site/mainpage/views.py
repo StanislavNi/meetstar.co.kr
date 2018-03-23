@@ -40,10 +40,9 @@ def randomize(request):
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
     all_users = UsersInEvent.objects.filter(id=event_id)
-
-    send_mail('It is time for event', 'The winner is', 'settings.EMAIL_HOST_USER',
-              [all_users.user], fail_silently=False)
-
+    for user in all_users:
+        send_mail('It is time for event', 'The winner is',
+                  'settings.EMAIL_HOST_USER',[user], fail_silently=False)
     return HttpResponse(event)
 
 def login(request):

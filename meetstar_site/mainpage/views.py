@@ -42,7 +42,7 @@ def randomize(request):
     all_users = UsersInEvent.objects.filter(id=event_id)
     for user in all_users:
         send_mail('It is time for event', 'The winner is',
-                  'settings.EMAIL_HOST_USER',[user], fail_silently=False)
+                  'settings.EMAIL_HOST_USER', ['stanislavni1991@gmail.com'], fail_silently=False)
     return HttpResponse(event)
 
 def login(request):

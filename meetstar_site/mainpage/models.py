@@ -18,6 +18,8 @@ class Events(models.Model):
 
         self.save()
 
+        return self.winner_id
+
     """def upcoming(self):
         return Events.objects.filter(date__gt=datetime.datetime.now)"""
 

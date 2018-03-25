@@ -38,15 +38,13 @@ def randomize(request):
     try:
         event = Events.objects.get(id=event_id)
         winner = event.randomize()
+        print(winner)
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
     all_users = UsersInEvent.objects.filter(event_id=event_id)
-    print(all_users)
     for user in all_users:
         mailnaswer = send_mail('It is time for event', 'The winner is {0}'.format(winner),
                   settings.EMAIL_HOST_USER, [user.user.email], fail_silently=False)
-        print(mailnaswer)
-        print(user.user.email)
     return HttpResponse(event)
 
 def login(request):

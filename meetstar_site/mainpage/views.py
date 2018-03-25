@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 
 from content.models import Videos
 from .models import Events, UsersInEvent
+from meetstar_site import settings
 
 
 logger = logging.getLogger(__name__)
@@ -39,10 +40,13 @@ def randomize(request):
         winner = event.randomize()
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
-    all_users = UsersInEvent.objects.filter(id=event_id)
+    all_users = UsersInEvent.objects.filter(event_id=event_id)
+    print(all_users)
     for user in all_users:
-        send_mail('It is time for event', 'The winner is',
-                  'settings.EMAIL_HOST_USER', ['stanislavni1991@gmail.com'], fail_silently=False)
+        mailnaswer = send_mail('It is time for event', 'The winner is {0}'.format(winner),
+                  settings.EMAIL_HOST_USER, [user.user.email], fail_silently=False)
+        print(mailnaswer)
+        print(user.user.email)
     return HttpResponse(event)
 
 def login(request):

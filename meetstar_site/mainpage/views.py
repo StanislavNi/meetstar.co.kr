@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
+from django.template import loader
 
 from content.models import Videos
 from .models import Events, UsersInEvent
@@ -38,13 +39,15 @@ def randomize(request):
     try:
         event = Events.objects.get(id=event_id)
         winner = event.randomize()
-        print(winner)
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
     all_users = UsersInEvent.objects.filter(event_id=event_id)
     for user in all_users:
-        mailnaswer = send_mail('It is time for event', 'The winner is {0}'.format(winner),
-                  settings.EMAIL_HOST_USER, [user.user.email], fail_silently=False)
+        html_message = loader.render_to_string('mainpage/mail.html', {
+                                            'username': user.user.username,'subject': winner})
+        send_mail('It is time for event', 'The winner is {0}'.format(winner),
+                  settings.EMAIL_HOST_USER, [user.user.email],
+                  fail_silently=False, html_message=html_message)
     return HttpResponse(event)
 
 def login(request):

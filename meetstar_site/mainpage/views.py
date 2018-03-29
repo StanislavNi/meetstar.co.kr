@@ -44,8 +44,9 @@ def randomize(request):
     all_users = UsersInEvent.objects.filter(event_id=event_id)
     for user in all_users:
         html_message = loader.render_to_string('mainpage/mail.html', {
-                                            'username': user.user.username,'subject': winner})
-        send_mail('It is time for event', 'The winner is {0}'.format(winner),
+                                            'username': user.user.username,
+                                            'subject': winner})
+        send_mail('It is time for event', '',
                   settings.EMAIL_HOST_USER, [user.user.email],
                   fail_silently=False, html_message=html_message)
     return HttpResponse(event)

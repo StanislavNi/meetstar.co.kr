@@ -9,6 +9,7 @@ from django.template import loader
 
 from content.models import Videos
 from .models import Events, UsersInEvent
+from userprofile.models import Profile
 from meetstar_site import settings
 
 
@@ -38,16 +39,20 @@ def randomize(request):
     event_id = request.GET['event_id']
     try:
         event = Events.objects.get(id=event_id)
-        winner = event.randomize()
+        winner_id = event.randomize()
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
-    all_users = UsersInEvent.objects.filter(event_id=event_id)
-    for user in all_users:
-        html_message = loader.render_to_string('mainpage/mail.html', {
-                                            'username': user.user.username,
-                                            'subject': winner})
+    all_event_users = UsersInEvent.objects.filter(event_id=event_id)
+    winner_user = Profile.objects.get(id=winner_id)
+    for user_in_event in all_event_users:
+        html_message = loader.render_to_string(
+            'mainpage/mail.htm',
+            {
+                'username': user_in_event.user,
+                'winner_user': winner_user,
+            })
         send_mail('It is time for event', '',
-                  settings.EMAIL_HOST_USER, [user.user.email],
+                  settings.EMAIL_HOST_USER, [user_in_event.user.email],
                   fail_silently=False, html_message=html_message)
     return HttpResponse(event)
 

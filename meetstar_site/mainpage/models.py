@@ -11,16 +11,13 @@ class Events(models.Model):
 
     def randomize(self):
         print('----- starting randomize')
-
         users_list = self.usersinevent_set.all().values_list('user', flat=True)
-
         self.winner_id = random.choice(users_list)
-
         self.save()
+        return self.winner_id
 
     """def upcoming(self):
         return Events.objects.filter(date__gt=datetime.datetime.now)"""
-
 
     def __str__(self):
         return 'Event: {0}'.format(self.title)

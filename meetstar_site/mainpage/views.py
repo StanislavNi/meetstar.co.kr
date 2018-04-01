@@ -4,9 +4,12 @@ import logging
 from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.mail import send_mail
+from django.template import loader
 
 from content.models import Videos
 from .models import Events, UsersInEvent
+from meetstar_site import settings
 
 
 logger = logging.getLogger(__name__)
@@ -35,10 +38,17 @@ def randomize(request):
     event_id = request.GET['event_id']
     try:
         event = Events.objects.get(id=event_id)
-        event.randomize()
+        winner = event.randomize()
     except Events.DoesNotExist:
         return HttpResponse('Event with ID {0} doesnt exist'.format(event_id))
-
+    all_users = UsersInEvent.objects.filter(event_id=event_id)
+    for user in all_users:
+        html_message = loader.render_to_string('mainpage/mail.html', {
+                                            'username': user.user.username,
+                                            'subject': winner})
+        send_mail('It is time for event', '',
+                  settings.EMAIL_HOST_USER, [user.user.email],
+                  fail_silently=False, html_message=html_message)
     return HttpResponse(event)
 
 def login(request):

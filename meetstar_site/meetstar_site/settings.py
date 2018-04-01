@@ -127,9 +127,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = 'key-3c9796cd793997183aa219895faaff82'
+MAILGUN_SERVER_NAME = 'sandboxe3cc05ce92394e4aac6166dcab7c5b0f.mailgun.org'
+EMAIL_HOST_USER = "stanislavni1991@gmail.com"
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
